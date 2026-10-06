@@ -9,10 +9,10 @@ on:
 jobs:
   test:
     runs-on: ubuntu-22.04
-    container: ghcr.io/oca/oca-ci/py3.10-odoo17.0:latest
+    container: ghcr.io/oca/oca-ci/py3.10-odoo19.0:latest
     services:
       postgres:
-        image: postgres:12
+        image: postgres:16
         env:
           POSTGRES_USER: odoo
           POSTGRES_PASSWORD: odoo
@@ -29,7 +29,7 @@ jobs:
       - name: Create stubs for unavailable addons
         run: |
           mkdir -p documents
-          printf "{'name': 'Documents', 'version': '17.0.1.0.0', 'depends': ['base']}\n" > documents/__manifest__.py
+          printf "{'name': 'Documents', 'version': '19.0.1.0.0', 'depends': ['base']}\n" > documents/__manifest__.py
           touch documents/__init__.py
       - name: Install the JWT dependency
         run: python -m pip install "PyJWT>=2,<3"
