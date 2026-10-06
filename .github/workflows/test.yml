@@ -31,6 +31,8 @@ jobs:
           mkdir -p documents
           printf "{'name': 'Documents', 'version': '17.0.1.0.0', 'depends': ['base']}\n" > documents/__manifest__.py
           touch documents/__init__.py
+      - name: Install the JWT dependency
+        run: python -m pip install "PyJWT>=2,<3"
       - name: Install addons and dependencies
         run: oca_install_addons
       - name: Initialize test db
